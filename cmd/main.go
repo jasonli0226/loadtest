@@ -13,6 +13,7 @@ import (
 	"go.uber.org/zap"
 
 	"loadtest/pkg/config"
+	"loadtest/pkg/histogram"
 	"loadtest/pkg/loadgen"
 	"loadtest/pkg/monitor"
 	"loadtest/pkg/results"
@@ -112,6 +113,10 @@ func printResults(monitor *monitor.Monitor, collector *results.Collector, durati
 	fmt.Println("\nResponse Time Statistics:")
 	printResponseTimeStats(responseTimes)
 
+	// Add histogram output
+	hist := histogram.NewHistogram(responseTimes, 20) // 20 bins
+	fmt.Println("\n" + hist.String())
+
 	fmt.Println("\nStatus Codes:")
 	for code, count := range statusCodes {
 		fmt.Printf("%d: %d\n", code, count)
@@ -142,6 +147,7 @@ func printResponseTimeStats(responseTimes []float64) {
 	max := responseTimes[count-1]
 	mean := calculateMean(responseTimes)
 	median := calculateMedian(responseTimes)
+	p50 := calculatePercentile(responseTimes, 50)
 	p95 := calculatePercentile(responseTimes, 95)
 	p99 := calculatePercentile(responseTimes, 99)
 
@@ -149,6 +155,7 @@ func printResponseTimeStats(responseTimes []float64) {
 	fmt.Printf("Max: %.2f ms\n", max)
 	fmt.Printf("Mean: %.2f ms\n", mean)
 	fmt.Printf("Median: %.2f ms\n", median)
+	fmt.Printf("50th percentile: %.2f ms\n", p50)
 	fmt.Printf("95th percentile: %.2f ms\n", p95)
 	fmt.Printf("99th percentile: %.2f ms\n", p99)
 }
