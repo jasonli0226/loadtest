@@ -35,6 +35,7 @@ func (c *Config) AddFlags(cmd *cobra.Command) {
 	cmd.Flags().BoolVar(&c.TLSSkipVerify, "insecure", false, "Skip TLS certificate verification")
 
 	cmd.MarkFlagRequired("url")
+	viper.BindPFlag("headers", cmd.Flags().Lookup("headers"))
 }
 
 func (c *Config) LoadConfig() error {
