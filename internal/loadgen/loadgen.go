@@ -9,10 +9,10 @@ import (
 	"go.uber.org/zap"
 	"golang.org/x/time/rate"
 
-	"loadtest/pkg/config"
-	"loadtest/pkg/monitor"
-	"loadtest/pkg/results"
-	"loadtest/pkg/scenarios"
+	"loadtest/internal/config"
+	"loadtest/internal/monitor"
+	"loadtest/internal/results"
+	"loadtest/internal/scenarios"
 )
 
 type LoadGenerator struct {

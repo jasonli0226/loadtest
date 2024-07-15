@@ -12,12 +12,12 @@ import (
 	"github.com/spf13/cobra"
 	"go.uber.org/zap"
 
-	"loadtest/pkg/config"
-	"loadtest/pkg/histogram"
-	"loadtest/pkg/loadgen"
-	"loadtest/pkg/monitor"
-	"loadtest/pkg/results"
-	"loadtest/pkg/scenarios"
+	"loadtest/internal/config"
+	"loadtest/internal/histogram"
+	"loadtest/internal/loadgen"
+	"loadtest/internal/monitor"
+	"loadtest/internal/results"
+	"loadtest/internal/scenarios"
 )
 
 var (

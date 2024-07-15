@@ -6,7 +6,7 @@ import (
 	"math/rand"
 	"os"
 
-	"loadtest/pkg/config"
+	"loadtest/internal/config"
 )
 
 type Scenario struct {
