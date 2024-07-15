@@ -2,15 +2,6 @@
 
 This is a powerful and flexible load testing CLI program implemented in Golang. It allows you to simulate concurrent users, customize test duration and request rate, and provides real-time monitoring and detailed result reporting.
 
-## Project Structure
-
-1. `main.go`: Entry point of the application, handles CLI setup and execution
-2. `config/config.go`: Manages configuration and command-line flags
-3. `loadgen/loadgen.go`: Implements the load generator and request handling
-4. `monitor/monitor.go`: Handles real-time monitoring and statistics
-5. `results/collector.go`: Collects and aggregates test results
-6. `scenarios/scenarios.go`: Manages customizable test scenarios
-
 ## Installation
 
 1. Ensure you have Go installed on your system
@@ -23,7 +14,61 @@ This is a powerful and flexible load testing CLI program implemented in Golang. 
 Run the program with desired flags, e.g.:
 
 ```
-./loadtest --url https://example.com --users 10 --duration 1m --rate 100
+loadtest --url https://example.com --headers 'token=abc' \
+    --users 10 --duration 1m --rate 10
+```
+
+Result example:
+
+```bash
+Starting load test...
+
+Load Test Results:
+Duration: 1m6.537116126s
+
+Test Duration: 1m0.389113036s
+Total Requests: 600
+Successful Requests: 600
+Failed Requests: 0
+Requests per second: 9.94
+Average Latency: 180.015439ms
+
+Response Time Statistics:
+Min: 156.00 ms
+Max: 488.00 ms
+Mean: 179.48 ms
+Median: 169.00 ms
+50th percentile: 169.00 ms
+95th percentile: 253.00 ms
+99th percentile: 337.00 ms
+
+Response Time Histogram:
+  0.00 ms -  16.60 ms | ################################################## (386)
+ 16.60 ms -  33.20 ms | ################# (136)
+ 33.20 ms -  49.80 ms | ### (24)
+ 49.80 ms -  66.40 ms | # (8)
+ 66.40 ms -  83.00 ms | # (9)
+ 83.00 ms -  99.60 ms | # (10)
+ 99.60 ms - 116.20 ms |  (6)
+116.20 ms - 132.80 ms |  (6)
+132.80 ms - 149.40 ms |  (3)
+149.40 ms - 166.00 ms |  (2)
+166.00 ms - 182.60 ms |  (4)
+182.60 ms - 199.20 ms |  (0)
+199.20 ms - 215.80 ms |  (3)
+215.80 ms - 232.40 ms |  (2)
+232.40 ms - 249.00 ms |  (0)
+249.00 ms - 265.60 ms |  (0)
+265.60 ms - 282.20 ms |  (0)
+282.20 ms - 298.80 ms |  (0)
+298.80 ms - 315.40 ms |  (0)
+315.40 ms - 332.00 ms |  (1)
+
+
+Status Codes:
+200: 600
+
+Total Errors: 0
 ```
 
 ### Using Custom Scenarios
